@@ -2,20 +2,14 @@
     --bg-main: #fdfbf7;
     --text-dark: #2c2c2c;
     --text-muted: #666666;
-
-    /* Обновленная палитра для навигации */
     --nav-bg: #f4f0ea;
     --nav-btn-bg: #ffffff;
-    --nav-btn-hover: #849b89;
     --nav-btn-text: #2c2c2c;
-
     --white: #ffffff;
 
-    /* Нежные цвета для туров и блоков */
     --pastel-sage: #eaf1ed;
     --pastel-lavender: #f2eef8;
     --pastel-peach: #fdf0e6;
-    --pastel-blue: #ebf4f8;
     --accent-soft: #849b89;
     --accent-hover: #6d8272;
 
@@ -49,7 +43,7 @@ body {
     padding: 0 20px;
 }
 
-/* --- Кнопки общего назначения --- */
+/* --- Кнопки --- */
 .btn {
     display: inline-block;
     padding: 12px 28px;
@@ -81,174 +75,85 @@ body {
     color: var(--white);
 }
 
-/* --- Секция HERO (На всю ширину) --- */
+/* --- Секция HERO (Картинка полностью + мягкие размытые края) --- */
 .hero {
     position: relative;
     width: 100%;
-    min-height: 100vh;
-    /* Занимает всю высоту экрана */
+    min-height: 85vh;
+    background-color: var(--bg-main);
     display: flex;
     align-items: center;
-    /* Центрирует контент по вертикали */
     justify-content: center;
-    /* Центрирует контент по горизонтали */
-    padding: 120px 0;
-    /* Отступы сверху и снизу (чтобы контент не прилипал) */
-
-    /* Современный фон: темный градиент с изображением на фоне */
-    background:
-        radial-gradient(circle at center, rgba(30, 35, 40, 0.6) 0%, rgba(20, 22, 25, 1) 100%),
-        /* Центральный светлый акцент */
-        url('https://images.unsplash.com/photo-1545205597-3d9d02c29597?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
-
+    padding: 60px 0;
     overflow: hidden;
-    /* Чтобы декоративные элементы не вылезали */
 }
 
-* Декоративный элемент: Мягкое свечение */ .hero::before {
-    content: '';
-    position: absolute;
-    top: -150px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 300px;
-    height: 300px;
-    background-color: rgba(132, 155, 137, 0.2);
-    /* Цвет accent-soft */
-    border-radius: 50%;
-    filter: blur(80px);
-    /* Сильное размытие */
-    z-index: 1;
-    /* Под текстом */
-}
-
+/* Сетка 50/50 для ПК */
 .hero .container {
-    z-index: 2;
-    /* Текст поверх свечения */
-    text-align: center;
-    /* Центрируем весь текст */
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
     align-items: center;
+    width: 100%;
+    z-index: 2;
 }
 
+/* Картинка слева на десктопе */
+.hero-image {
+    width: 100%;
+    height: 100%;
+    min-height: 600px;
+    background: url('static/photo3.jpg') top/cover no-repeat;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-soft);
+}
+
+/* Текст справа (без подложки) */
 .hero-content {
-    max-width: 800px;
-    /* Ограничиваем ширину текста для удобства чтения */
+    max-width: 100%;
     padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    text-align: left;
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border: none;
+    box-shadow: none;
 }
 
 .hero-content h1 {
-    font-size: clamp(48px, 10vw, 96px);
-    /* Адаптивный размер шрифта: от 48px до 96px */
+    font-size: clamp(36px, 5vw, 64px);
     font-weight: 700;
-    line-height: 0.95;
-    /* Очень плотный межстрочный интервал */
-    margin-bottom: 30px;
-    color: var(--white);
-    /* Белый текст на темном фоне */
-    letter-spacing: -2px;
-    /* Уменьшенное межбуквенное расстояние */
-
-    /* Эффект текста: легкое свечение */
-    text-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
-}
-
-.hero-content h1 br {
-    display: none;
-    /* Скрываем перенос строки на больших экранах, позволяя clamp управлять размером */
+    line-height: 1.1;
+    margin-bottom: 24px;
+    color: var(--text-dark);
+    letter-spacing: -1px;
 }
 
 .hero-list {
     list-style: none;
-    font-size: clamp(18px, 4vw, 22px);
-    /* Адаптивный размер текста */
-    color: #a0a0a0;
-    /* Светло-серый текст */
-    font-weight: 400;
+    font-size: clamp(16px, 2vw, 18px);
+    color: var(--text-muted);
     display: flex;
-    gap: 30px;
-    /* Разделяем пункты горизонтально */
+    gap: 16px;
     flex-wrap: wrap;
-    /* Если не помещаются, переносятся на новую строку */
-    justify-content: center;
-    margin-top: 10px;
+    justify-content: flex-start;
 }
 
 .hero-list li {
-    margin-bottom: 0;
     position: relative;
-    padding-left: 0;
-    /* Убираем отступ, так как убрали точку */
 }
 
-/* Убираем точку-маркер, делаем более минималистично */
-.hero-list li::before {
-    content: none;
-}
-
-/* Добавляем разделительную черту МЕЖДУ пунктами (современный прием) */
 .hero-list li:not(:last-child)::after {
     content: '|';
     position: absolute;
-    right: -17px;
+    right: -10px;
     top: 50%;
     transform: translateY(-50%);
-    color: rgba(255, 255, 255, 0.15);
-    /* Очень бледный разделитель */
-    font-weight: 300;
+    color: var(--text-muted);
+    opacity: 0.5;
 }
 
-/* Кнопка призыва к действию (добавим для полноты картины, если она есть в макете) */
-.hero-content .btn-hero {
-    margin-top: 50px;
-    padding: 18px 40px;
-    font-size: 16px;
-    background-color: var(--white);
-    color: var(--text-dark);
-    font-weight: 600;
-    letter-spacing: 1px;
-}
-
-.hero-content .btn-hero:hover {
-    background-color: var(--accent-soft);
-    color: var(--white);
-}
-
-/* --- Медиазапросы для адаптивности --- */
-@media (max-width: 768px) {
-    .hero {
-        min-height: 70vh;
-        /* Меньше высота на телефонах */
-        padding: 100px 0 60px;
-        background:
-            radial-gradient(circle at center, rgba(30, 35, 40, 0.75) 0%, rgba(20, 22, 25, 1) 100%),
-            url('https://images.unsplash.com/photo-1545205597-3d9d02c29597?auto=format&fit=crop&w=800&q=80') center/cover no-repeat;
-    }
-
-    .hero-content h1 {
-        font-size: clamp(36px, 12vw, 56px);
-        /* Размер меньше для телефонов */
-        letter-spacing: -1px;
-    }
-
-    .hero-list {
-        flex-direction: column;
-        /* Пункты вертикально на телефоне */
-        gap: 15px;
-        font-size: 18px;
-    }
-
-    .hero-list li:not(:last-child)::after {
-        content: none;
-        /* Убираем вертикальные разделители */
-    }
-}
-
-/* --- СТИЛИ НАВИГАЦИИ (Базовые) --- */
+/* --- Навигация --- */
 .nav-bar {
     background-color: rgba(244, 240, 234, 0.95);
     backdrop-filter: blur(10px);
@@ -256,83 +161,70 @@ body {
     top: 0;
     z-index: 100;
     padding: 12px 0;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
 }
-
-/* --- БАЗОВЫЕ СТИЛИ (Десктоп / ПК) --- */
 
 .nav-container {
     display: flex;
     justify-content: center;
-    /* На ПК кнопки остаются по центру */
     align-items: center;
-    position: relative;
 }
 
-/* По умолчанию на десктопе заголовок полностью скрыт */
 .nav-current-title {
     display: none;
 }
 
 .nav-links {
     display: flex;
-    justify-content: center;
-    align-items: center;
     gap: 16px;
     list-style: none;
 }
 
 .nav-btn {
-    display: inline-block;
     padding: 10px 24px;
-    background-color: var(--nav-btn-bg, #ffffff);
-    color: var(--nav-btn-text, #2c2c2c);
+    background-color: var(--nav-btn-bg);
+    color: var(--nav-btn-text);
     text-decoration: none;
     font-weight: 600;
     font-size: 13px;
     letter-spacing: 0.5px;
     text-transform: uppercase;
     border-radius: 50px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+    transition: all 0.3s ease;
     border: 1px solid rgba(0, 0, 0, 0.03);
 }
 
 .nav-btn:hover {
-    background-color: var(--accent-soft, #849b89);
-    color: #ffffff;
+    background-color: var(--accent-soft);
+    color: var(--white);
     transform: translateY(-2px);
 }
 
-/* Кнопка-гамбургер по умолчанию скрыта на ПК */
 .nav-toggle {
     display: none;
-    background: #ffffff;
+    background: var(--white);
     border: 1px solid rgba(0, 0, 0, 0.08);
     border-radius: 50px;
     padding: 10px 16px;
     cursor: pointer;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
     gap: 4px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-    transition: all 0.3s ease;
 }
 
 .hamburger-bar {
-    display: block;
     width: 20px;
     height: 2px;
-    background-color: var(--text-dark, #2c2c2c);
+    background-color: var(--text-dark);
     border-radius: 2px;
     transition: all 0.3s ease;
 }
 
-/* --- Секция Моя история --- */
-.about {
+/* --- Секции --- */
+.about, .yoga-section, .dobayukivanie-section, .tours-section {
     padding: 80px 0;
+}
+
+.about {
     background-color: var(--white);
     border-bottom: 1px solid #f0f0f0;
 }
@@ -342,7 +234,6 @@ body {
     font-weight: 700;
     text-transform: uppercase;
     margin-bottom: 24px;
-    letter-spacing: 0.5px;
 }
 
 .about-text {
@@ -353,11 +244,6 @@ body {
 
 .about-text p {
     margin-bottom: 16px;
-}
-
-/* --- Секция Йога --- */
-.yoga-section {
-    padding: 80px 0;
 }
 
 .section-desc {
@@ -385,33 +271,31 @@ body {
     border: 1px solid #f5f5f5;
 }
 
-.card:hover {
+.card:hover, .tour-card:hover {
     transform: translateY(-5px);
     box-shadow: var(--shadow-hover);
 }
 
-.card h3 {
+.card h3, .tour-card h3 {
     font-size: 20px;
     margin-bottom: 12px;
 }
 
-.card p {
+.card p, .tour-card p {
     color: var(--text-muted);
     font-size: 14px;
     margin-bottom: 24px;
-    flex-grow: 1;
 }
 
-/* --- Секция Телесная терапия --- */
+/* --- Телесная терапия --- */
 .bodywork-hero {
-    position: relative;
     background: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)),
-        url('https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
-    padding: 100px 0;
+        url('static/photo4.jpg') bottom/cover no-repeat;
+    padding: 20% 5%;
     color: var(--white);
     border-radius: var(--radius-md);
     margin: 40px 0;
-}
+}   
 
 .bodywork-content {
     max-width: 600px;
@@ -422,13 +306,6 @@ body {
     margin-bottom: 16px;
 }
 
-.bodywork-content p {
-    font-size: 16px;
-    margin-bottom: 28px;
-    opacity: 0.95;
-}
-
-/* Отзывы */
 .reviews-section {
     padding: 40px 0 80px;
 }
@@ -448,9 +325,8 @@ body {
     color: var(--accent-soft);
 }
 
-/* --- Секция Добаюкивание --- */
+/* --- Добаюкивание --- */
 .dobayukivanie-section {
-    padding: 80px 0;
     background-color: var(--white);
 }
 
@@ -483,7 +359,6 @@ body {
     padding: 12px 16px;
     border: 1px solid #ddd;
     border-radius: var(--radius-sm);
-    font-family: inherit;
     font-size: 14px;
     outline: none;
     transition: border-color 0.2s;
@@ -506,11 +381,7 @@ body {
     border-radius: var(--radius-sm);
 }
 
-/* --- Секция Туры и поездки --- */
-.tours-section {
-    padding: 80px 0;
-}
-
+/* --- Туры --- */
 .tour-card {
     padding: 36px 28px;
     border-radius: var(--radius-md);
@@ -521,33 +392,9 @@ body {
     transition: transform 0.3s;
 }
 
-.tour-card:hover {
-    transform: translateY(-5px);
-}
-
-/* Разные нежные фоны для туров */
-.tour-card-1 {
-    background-color: var(--pastel-sage);
-}
-
-.tour-card-2 {
-    background-color: var(--pastel-lavender);
-}
-
-.tour-card-3 {
-    background-color: var(--pastel-peach);
-}
-
-.tour-card h3 {
-    font-size: 22px;
-    margin-bottom: 12px;
-}
-
-.tour-card p {
-    color: var(--text-muted);
-    margin-bottom: 24px;
-    font-size: 14px;
-}
+.tour-card-1 { background-color: var(--pastel-sage); }
+.tour-card-2 { background-color: var(--pastel-lavender); }
+.tour-card-3 { background-color: var(--pastel-peach); }
 
 /* --- Футер --- */
 footer {
@@ -569,8 +416,7 @@ footer {
     color: #e2dcd2;
 }
 
-.footer-col p,
-.footer-col a {
+.footer-col p, .footer-col a {
     color: #ccc;
     text-decoration: none;
     font-size: 14px;
@@ -590,257 +436,153 @@ footer {
     color: #888;
 }
 
+/* --- Адаптивность (Mobile) --- */
 @media (max-width: 768px) {
-
-    /* --- Общие настройки и отступы --- */
     .container {
         padding: 0 16px;
-        /* Чуть уменьшаем боковые поля, чтобы освободить место */
     }
 
-    .section-title {
-        font-size: 24px;
-        margin-bottom: 16px;
-        text-align: center;
-        /* Центрируем заголовки секций на мобильных */
-    }
-
-    .section-desc {
-        font-size: 14px;
-        margin-bottom: 28px;
-        text-align: center;
-    }
-
-    /* --- Секция HERO --- */
     .hero {
-        min-height: 85vh;
-        /* Не занимаем слишком много места по высоте на мобильных */
-        padding: 80px 0 50px;
-        /* Затемняем фон чуть сильнее для гарантированной читаемости */
-        background:
-            radial-gradient(circle at center, rgba(20, 22, 25, 0.8) 0%, rgba(15, 16, 18, 0.95) 100%),
-            url('https://images.unsplash.com/photo-1545205597-3d9d02c29597?auto=format&fit=crop&w=800&q=80') center/cover no-repeat;
+        min-height: 75vh;
+        padding: 40px 0;
+        /* Картинка становится фоном секции */
+        background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+                    url('static/photo3.jpg') center/cover no-repeat;
+    }
+
+    /* Скрываем отдельный блок картинки, так как она перешла в фон .hero */
+    .hero-image {
+        display: none;
+    }
+
+    .hero .container {
+        grid-template-columns: 1fr;
+        justify-content: center;
+    }
+
+    /* Текст по центру, белого цвета для читаемости на фоновой картинке */
+    .hero-content {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
     .hero-content h1 {
-        font-size: clamp(34px, 10vw, 48px);
-        /* Оптимальный размер имени */
-        letter-spacing: -1px;
-        margin-bottom: 20px;
+        color: var(--white);
+        font-size: clamp(32px, 8vw, 44px);
     }
 
     .hero-list {
+        justify-content: center;
         flex-direction: column;
-        /* Регалии выстраиваем строго в столбик */
-        gap: 10px;
-        font-size: 16px;
+        gap: 8px;
+        color: rgba(255, 255, 255, 0.9);
     }
 
     .hero-list li:not(:last-child)::after {
         display: none;
-        /* Убираем вертикальные разделительные черточки */
-    }
+    }   
 
     .nav-container {
+        position: relative;
         justify-content: space-between;
-        /* На мобильных: заголовок слева, гамбургер справа */
     }
 
-    /* Включаем заголовок только на мобильных */
     .nav-current-title {
         display: block;
         font-size: 13px;
         font-weight: 700;
-        color: var(--text-dark, #2c2c2c);
         text-transform: uppercase;
-        letter-spacing: 0.5px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        max-width: 65%;
-        /* Ограничение ширины, чтобы не накладываться на кнопку */
-
-        /* Анимация проявления */
         opacity: 0;
         transform: translateX(-8px);
-        transition: opacity 0.3s ease, transform 0.3s ease;
+        transition: all 0.3s ease;
     }
 
-    /* Видимый заголовок */
     .nav-current-title.visible {
         opacity: 1;
         transform: translateX(0);
     }
 
-    /* Показываем кнопку переключателя */
     .nav-toggle {
         display: flex;
     }
 
-    /* Анимация иконки при открытии (в крестик) */
-    .nav-toggle.active .hamburger-bar:nth-child(1) {
-        transform: translateY(6px) rotate(45deg);
-    }
+    .nav-toggle.active .hamburger-bar:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+    .nav-toggle.active .hamburger-bar:nth-child(2) { opacity: 0; }
+    .nav-toggle.active .hamburger-bar:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
 
-    .nav-toggle.active .hamburger-bar:nth-child(2) {
-        opacity: 0;
-    }
-
-    .nav-toggle.active .hamburger-bar:nth-child(3) {
-        transform: translateY(-6px) rotate(-45deg);
-    }
-
-    /* Выпадающее меню */
     .nav-links {
         position: absolute;
-        top: calc(100% + 12px);
+        top: calc(100% + 10px);
         right: 0;
-        width: 220px;
+        
+        /* Автоматическая ширина по содержимому с ограничением */
+        width: max-content;
+        min-width: 200px;
+        max-width: calc(100vw - 32px); /* Защита от вылезания за экран */
+        
         background-color: #ffffff;
         border-radius: 16px;
         padding: 12px;
+        
+        display: flex;
         flex-direction: column;
         align-items: stretch;
-        gap: 8px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+        gap: 16px;
+        
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
         border: 1px solid rgba(0, 0, 0, 0.05);
+        z-index: 1000;
 
-        /* Состояние скрыто по умолчанию */
+        /* Состояние "скрыто" по умолчанию */
         opacity: 0;
         visibility: hidden;
         transform: translateY(-10px);
         transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
     }
 
-    /* Активное состояние (открыто) */
     .nav-links.active {
         opacity: 1;
         visibility: visible;
         transform: translateY(0);
     }
-
-    /* Кнопки внутри мобильного выпадающего меню */
+    .nav-links li {
+        width: 100%;
+        list-style: none;
+    }
     .nav-links .nav-btn {
-        text-align: center;
+        display: block;             /* Занимает всю ширину контейнера li */
         width: 100%;
-        box-shadow: none;
+        text-align: center;
+        white-space: nowrap;        /* Запрещает перенос слов на новую строку */
         background-color: #fdfbf7;
+        box-shadow: none;
+        padding: 10px 16px;
+        font-size: 13px;
     }
 
-    /* --- Секция "Моя история" --- */
-    .about {
+    .about, .yoga-section, .dobayukivanie-section, .tours-section {
         padding: 50px 0;
     }
 
-    .about-text {
-        font-size: 15px;
-        text-align: left;
-    }
-
-    /* --- Секция Йога --- */
-    .yoga-section {
-        padding: 50px 0;
-    }
-
-    .cards-grid-3 {
-        grid-template-columns: 1fr;
-        /* Переводим все карточки в 1 колонку */
-        gap: 16px;
-    }
-
-    .card {
-        padding: 24px 20px;
-    }
-
-    .card .btn {
-        width: 100%;
-        /* Кнопка во всю ширину карточки для удобства клика пальцем */
-    }
-
-    /* --- Секция Телесная терапия --- */
-    .bodywork-hero {
-        padding: 60px 0;
-        margin: 20px 0;
-        border-radius: var(--radius-sm);
-    }
-
-    .bodywork-content {
-        padding: 0 20px !important;
+    .section-title, .section-desc {
         text-align: center;
     }
 
-    .bodywork-content h2 {
-        font-size: 26px;
-    }
-
-    .bodywork-content p {
-        font-size: 14px;
-    }
-
-    .bodywork-content .btn {
-        width: 100%;
-    }
-
-    .reviews-section {
-        padding: 30px 0 50px;
-    }
-
-    /* --- Секция Добаюкивание --- */
-    .dobayukivanie-section {
-        padding: 50px 0;
-    }
-
-    .dobayuki-grid {
+    .cards-grid-3, .dobayuki-grid, .footer-grid {
         grid-template-columns: 1fr;
-        /* Форма и фото идут друг за другом */
-        gap: 30px;
     }
 
-    .booking-form {
-        padding: 24px 18px;
+    .btn {
+        width: 100%;
     }
 
     .form-group input {
         font-size: 16px;
-        /* Защита от автозума в Safari на iPhone */
-        padding: 14px 16px;
+    }
+    .bodywork-hero {
+        background-position: right;
     }
 
-    .image-grid {
-        gap: 8px;
-    }
-
-    .image-grid img {
-        height: 120px;
-        /* Уменьшаем высоту галереи */
-    }
-
-    /* --- Секция Туры и поездки --- */
-    .tours-section {
-        padding: 50px 0;
-    }
-
-    .tour-card {
-        padding: 28px 20px;
-    }
-
-    .tour-card .btn {
-        width: 100%;
-    }
-
-    /* --- Футер --- */
-    footer {
-        padding: 40px 0 20px;
-    }
-
-    .footer-grid {
-        grid-template-columns: 1fr;
-        /* Колонки футера друг под другом */
-        gap: 28px;
-        text-align: center;
-    }
-
-    .footer-col h4 {
-        margin-bottom: 10px;
-    }
 }
