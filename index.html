@@ -9,855 +9,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 
-    <style>
-        :root {
-            --bg-main: #fdfbf7;
-            --text-dark: #2c2c2c;
-            --text-muted: #666666;
 
-            /* Обновленная палитра для навигации */
-            --nav-bg: #f4f0ea;
-            --nav-btn-bg: #ffffff;
-            --nav-btn-hover: #849b89;
-            --nav-btn-text: #2c2c2c;
-
-            --white: #ffffff;
-
-            /* Нежные цвета для туров и блоков */
-            --pastel-sage: #eaf1ed;
-            --pastel-lavender: #f2eef8;
-            --pastel-peach: #fdf0e6;
-            --pastel-blue: #ebf4f8;
-            --accent-soft: #849b89;
-            --accent-hover: #6d8272;
-
-            --radius-sm: 8px;
-            --radius-md: 16px;
-            --radius-lg: 24px;
-            --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.03);
-            --shadow-hover: 0 15px 35px rgba(0, 0, 0, 0.08);
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Montserrat', sans-serif;
-            background-color: var(--bg-main);
-            color: var(--text-dark);
-            line-height: 1.6;
-        }
-
-        .container {
-            max-width: 1140px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* --- Кнопки общего назначения --- */
-        .btn {
-            display: inline-block;
-            padding: 12px 28px;
-            background-color: var(--text-dark);
-            color: var(--white);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 14px;
-            border-radius: 30px;
-            border: none;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-align: center;
-        }
-
-        .btn:hover {
-            background-color: var(--accent-soft);
-            transform: translateY(-2px);
-        }
-
-        .btn-outline {
-            background-color: transparent;
-            color: var(--text-dark);
-            border: 1.5px solid var(--text-dark);
-        }
-
-        .btn-outline:hover {
-            background-color: var(--text-dark);
-            color: var(--white);
-        }
-
-        /* --- Секция HERO (На всю ширину) --- */
-        .hero {
-            position: relative;
-            width: 100%;
-            min-height: 100vh;
-            /* Занимает всю высоту экрана */
-            display: flex;
-            align-items: center;
-            /* Центрирует контент по вертикали */
-            justify-content: center;
-            /* Центрирует контент по горизонтали */
-            padding: 120px 0;
-            /* Отступы сверху и снизу (чтобы контент не прилипал) */
-
-            /* Современный фон: темный градиент с изображением на фоне */
-            background:
-                radial-gradient(circle at center, rgba(30, 35, 40, 0.6) 0%, rgba(20, 22, 25, 1) 100%),
-                /* Центральный светлый акцент */
-                url('https://images.unsplash.com/photo-1545205597-3d9d02c29597?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
-
-            overflow: hidden;
-            /* Чтобы декоративные элементы не вылезали */
-        }
-
-        * Декоративный элемент: Мягкое свечение */ .hero::before {
-            content: '';
-            position: absolute;
-            top: -150px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 300px;
-            height: 300px;
-            background-color: rgba(132, 155, 137, 0.2);
-            /* Цвет accent-soft */
-            border-radius: 50%;
-            filter: blur(80px);
-            /* Сильное размытие */
-            z-index: 1;
-            /* Под текстом */
-        }
-
-        .hero .container {
-            z-index: 2;
-            /* Текст поверх свечения */
-            text-align: center;
-            /* Центрируем весь текст */
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .hero-content {
-            max-width: 800px;
-            /* Ограничиваем ширину текста для удобства чтения */
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .hero-content h1 {
-            font-size: clamp(48px, 10vw, 96px);
-            /* Адаптивный размер шрифта: от 48px до 96px */
-            font-weight: 700;
-            line-height: 0.95;
-            /* Очень плотный межстрочный интервал */
-            margin-bottom: 30px;
-            color: var(--white);
-            /* Белый текст на темном фоне */
-            letter-spacing: -2px;
-            /* Уменьшенное межбуквенное расстояние */
-
-            /* Эффект текста: легкое свечение */
-            text-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
-        }
-
-        .hero-content h1 br {
-            display: none;
-            /* Скрываем перенос строки на больших экранах, позволяя clamp управлять размером */
-        }
-
-        .hero-list {
-            list-style: none;
-            font-size: clamp(18px, 4vw, 22px);
-            /* Адаптивный размер текста */
-            color: #a0a0a0;
-            /* Светло-серый текст */
-            font-weight: 400;
-            display: flex;
-            gap: 30px;
-            /* Разделяем пункты горизонтально */
-            flex-wrap: wrap;
-            /* Если не помещаются, переносятся на новую строку */
-            justify-content: center;
-            margin-top: 10px;
-        }
-
-        .hero-list li {
-            margin-bottom: 0;
-            position: relative;
-            padding-left: 0;
-            /* Убираем отступ, так как убрали точку */
-        }
-
-        /* Убираем точку-маркер, делаем более минималистично */
-        .hero-list li::before {
-            content: none;
-        }
-
-        /* Добавляем разделительную черту МЕЖДУ пунктами (современный прием) */
-        .hero-list li:not(:last-child)::after {
-            content: '|';
-            position: absolute;
-            right: -17px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: rgba(255, 255, 255, 0.15);
-            /* Очень бледный разделитель */
-            font-weight: 300;
-        }
-
-        /* Кнопка призыва к действию (добавим для полноты картины, если она есть в макете) */
-        .hero-content .btn-hero {
-            margin-top: 50px;
-            padding: 18px 40px;
-            font-size: 16px;
-            background-color: var(--white);
-            color: var(--text-dark);
-            font-weight: 600;
-            letter-spacing: 1px;
-        }
-
-        .hero-content .btn-hero:hover {
-            background-color: var(--accent-soft);
-            color: var(--white);
-        }
-
-        /* --- Медиазапросы для адаптивности --- */
-        @media (max-width: 768px) {
-            .hero {
-                min-height: 70vh;
-                /* Меньше высота на телефонах */
-                padding: 100px 0 60px;
-                background:
-                    radial-gradient(circle at center, rgba(30, 35, 40, 0.75) 0%, rgba(20, 22, 25, 1) 100%),
-                    url('https://images.unsplash.com/photo-1545205597-3d9d02c29597?auto=format&fit=crop&w=800&q=80') center/cover no-repeat;
-            }
-
-            .hero-content h1 {
-                font-size: clamp(36px, 12vw, 56px);
-                /* Размер меньше для телефонов */
-                letter-spacing: -1px;
-            }
-
-            .hero-list {
-                flex-direction: column;
-                /* Пункты вертикально на телефоне */
-                gap: 15px;
-                font-size: 18px;
-            }
-
-            .hero-list li:not(:last-child)::after {
-                content: none;
-                /* Убираем вертикальные разделители */
-            }
-        }
-
-        /* --- СТИЛИ НАВИГАЦИИ (Базовые) --- */
-        .nav-bar {
-            background-color: rgba(244, 240, 234, 0.95);
-            backdrop-filter: blur(10px);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            padding: 12px 0;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
-        }
-
-        /* --- БАЗОВЫЕ СТИЛИ (Десктоп / ПК) --- */
-
-        .nav-container {
-            display: flex;
-            justify-content: center;
-            /* На ПК кнопки остаются по центру */
-            align-items: center;
-            position: relative;
-        }
-
-        /* По умолчанию на десктопе заголовок полностью скрыт */
-        .nav-current-title {
-            display: none;
-        }
-
-        .nav-links {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 16px;
-            list-style: none;
-        }
-
-        .nav-btn {
-            display: inline-block;
-            padding: 10px 24px;
-            background-color: var(--nav-btn-bg, #ffffff);
-            color: var(--nav-btn-text, #2c2c2c);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 13px;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-            border-radius: 50px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-            transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
-            border: 1px solid rgba(0, 0, 0, 0.03);
-        }
-
-        .nav-btn:hover {
-            background-color: var(--accent-soft, #849b89);
-            color: #ffffff;
-            transform: translateY(-2px);
-        }
-
-        /* Кнопка-гамбургер по умолчанию скрыта на ПК */
-        .nav-toggle {
-            display: none;
-            background: #ffffff;
-            border: 1px solid rgba(0, 0, 0, 0.08);
-            border-radius: 50px;
-            padding: 10px 16px;
-            cursor: pointer;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            gap: 4px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
-        }
-
-        .hamburger-bar {
-            display: block;
-            width: 20px;
-            height: 2px;
-            background-color: var(--text-dark, #2c2c2c);
-            border-radius: 2px;
-            transition: all 0.3s ease;
-        }
-
-        /* --- Секция Моя история --- */
-        .about {
-            padding: 80px 0;
-            background-color: var(--white);
-            border-bottom: 1px solid #f0f0f0;
-        }
-
-        .section-title {
-            font-size: 32px;
-            font-weight: 700;
-            text-transform: uppercase;
-            margin-bottom: 24px;
-            letter-spacing: 0.5px;
-        }
-
-        .about-text {
-            max-width: 800px;
-            font-size: 16px;
-            color: #444;
-        }
-
-        .about-text p {
-            margin-bottom: 16px;
-        }
-
-        /* --- Секция Йога --- */
-        .yoga-section {
-            padding: 80px 0;
-        }
-
-        .section-desc {
-            font-size: 16px;
-            color: var(--text-muted);
-            margin-bottom: 40px;
-            max-width: 600px;
-        }
-
-        .cards-grid-3 {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 24px;
-        }
-
-        .card {
-            background: var(--white);
-            padding: 32px 24px;
-            border-radius: var(--radius-md);
-            box-shadow: var(--shadow-soft);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            transition: transform 0.3s, box-shadow 0.3s;
-            border: 1px solid #f5f5f5;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-hover);
-        }
-
-        .card h3 {
-            font-size: 20px;
-            margin-bottom: 12px;
-        }
-
-        .card p {
-            color: var(--text-muted);
-            font-size: 14px;
-            margin-bottom: 24px;
-            flex-grow: 1;
-        }
-
-        /* --- Секция Телесная терапия --- */
-        .bodywork-hero {
-            position: relative;
-            background: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)),
-                url('https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
-            padding: 100px 0;
-            color: var(--white);
-            border-radius: var(--radius-md);
-            margin: 40px 0;
-        }
-
-        .bodywork-content {
-            max-width: 600px;
-        }
-
-        .bodywork-content h2 {
-            font-size: 36px;
-            margin-bottom: 16px;
-        }
-
-        .bodywork-content p {
-            font-size: 16px;
-            margin-bottom: 28px;
-            opacity: 0.95;
-        }
-
-        /* Отзывы */
-        .reviews-section {
-            padding: 40px 0 80px;
-        }
-
-        .review-card {
-            background: var(--white);
-            padding: 24px;
-            border-radius: var(--radius-sm);
-            border-left: 4px solid var(--accent-soft);
-            box-shadow: var(--shadow-soft);
-        }
-
-        .review-author {
-            font-weight: 600;
-            margin-top: 12px;
-            font-size: 14px;
-            color: var(--accent-soft);
-        }
-
-        /* --- Секция Добаюкивание --- */
-        .dobayukivanie-section {
-            padding: 80px 0;
-            background-color: var(--white);
-        }
-
-        .dobayuki-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            margin-top: 30px;
-        }
-
-        .booking-form {
-            background-color: var(--bg-main);
-            padding: 32px;
-            border-radius: var(--radius-md);
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            font-size: 14px;
-            font-weight: 500;
-            margin-bottom: 8px;
-        }
-
-        .form-group input {
-            width: 100%;
-            padding: 12px 16px;
-            border: 1px solid #ddd;
-            border-radius: var(--radius-sm);
-            font-family: inherit;
-            font-size: 14px;
-            outline: none;
-            transition: border-color 0.2s;
-        }
-
-        .form-group input:focus {
-            border-color: var(--accent-soft);
-        }
-
-        .image-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
-        }
-
-        .image-grid img {
-            width: 100%;
-            height: 160px;
-            object-fit: cover;
-            border-radius: var(--radius-sm);
-        }
-
-        /* --- Секция Туры и поездки --- */
-        .tours-section {
-            padding: 80px 0;
-        }
-
-        .tour-card {
-            padding: 36px 28px;
-            border-radius: var(--radius-md);
-            box-shadow: var(--shadow-soft);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            transition: transform 0.3s;
-        }
-
-        .tour-card:hover {
-            transform: translateY(-5px);
-        }
-
-        /* Разные нежные фоны для туров */
-        .tour-card-1 {
-            background-color: var(--pastel-sage);
-        }
-
-        .tour-card-2 {
-            background-color: var(--pastel-lavender);
-        }
-
-        .tour-card-3 {
-            background-color: var(--pastel-peach);
-        }
-
-        .tour-card h3 {
-            font-size: 22px;
-            margin-bottom: 12px;
-        }
-
-        .tour-card p {
-            color: var(--text-muted);
-            margin-bottom: 24px;
-            font-size: 14px;
-        }
-
-        /* --- Футер --- */
-        footer {
-            background-color: var(--text-dark);
-            color: var(--white);
-            padding: 60px 0 30px;
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-bottom: 40px;
-        }
-
-        .footer-col h4 {
-            font-size: 18px;
-            margin-bottom: 16px;
-            color: #e2dcd2;
-        }
-
-        .footer-col p,
-        .footer-col a {
-            color: #ccc;
-            text-decoration: none;
-            font-size: 14px;
-            margin-bottom: 8px;
-            display: block;
-        }
-
-        .footer-col a:hover {
-            color: var(--white);
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 30px;
-            border-top: 1px solid #444;
-            font-size: 12px;
-            color: #888;
-        }
-
-        @media (max-width: 768px) {
-
-            /* --- Общие настройки и отступы --- */
-            .container {
-                padding: 0 16px;
-                /* Чуть уменьшаем боковые поля, чтобы освободить место */
-            }
-
-            .section-title {
-                font-size: 24px;
-                margin-bottom: 16px;
-                text-align: center;
-                /* Центрируем заголовки секций на мобильных */
-            }
-
-            .section-desc {
-                font-size: 14px;
-                margin-bottom: 28px;
-                text-align: center;
-            }
-
-            /* --- Секция HERO --- */
-            .hero {
-                min-height: 85vh;
-                /* Не занимаем слишком много места по высоте на мобильных */
-                padding: 80px 0 50px;
-                /* Затемняем фон чуть сильнее для гарантированной читаемости */
-                background:
-                    radial-gradient(circle at center, rgba(20, 22, 25, 0.8) 0%, rgba(15, 16, 18, 0.95) 100%),
-                    url('https://images.unsplash.com/photo-1545205597-3d9d02c29597?auto=format&fit=crop&w=800&q=80') center/cover no-repeat;
-            }
-
-            .hero-content h1 {
-                font-size: clamp(34px, 10vw, 48px);
-                /* Оптимальный размер имени */
-                letter-spacing: -1px;
-                margin-bottom: 20px;
-            }
-
-            .hero-list {
-                flex-direction: column;
-                /* Регалии выстраиваем строго в столбик */
-                gap: 10px;
-                font-size: 16px;
-            }
-
-            .hero-list li:not(:last-child)::after {
-                display: none;
-                /* Убираем вертикальные разделительные черточки */
-            }
-
-            .nav-container {
-                justify-content: space-between;
-                /* На мобильных: заголовок слева, гамбургер справа */
-            }
-
-            /* Включаем заголовок только на мобильных */
-            .nav-current-title {
-                display: block;
-                font-size: 13px;
-                font-weight: 700;
-                color: var(--text-dark, #2c2c2c);
-                text-transform: uppercase;
-                letter-spacing: 0.5px;
-                white-space: nowrap;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                max-width: 65%;
-                /* Ограничение ширины, чтобы не накладываться на кнопку */
-
-                /* Анимация проявления */
-                opacity: 0;
-                transform: translateX(-8px);
-                transition: opacity 0.3s ease, transform 0.3s ease;
-            }
-
-            /* Видимый заголовок */
-            .nav-current-title.visible {
-                opacity: 1;
-                transform: translateX(0);
-            }
-
-            /* Показываем кнопку переключателя */
-            .nav-toggle {
-                display: flex;
-            }
-
-            /* Анимация иконки при открытии (в крестик) */
-            .nav-toggle.active .hamburger-bar:nth-child(1) {
-                transform: translateY(6px) rotate(45deg);
-            }
-
-            .nav-toggle.active .hamburger-bar:nth-child(2) {
-                opacity: 0;
-            }
-
-            .nav-toggle.active .hamburger-bar:nth-child(3) {
-                transform: translateY(-6px) rotate(-45deg);
-            }
-
-            /* Выпадающее меню */
-            .nav-links {
-                position: absolute;
-                top: calc(100% + 12px);
-                right: 0;
-                width: 220px;
-                background-color: #ffffff;
-                border-radius: 16px;
-                padding: 12px;
-                flex-direction: column;
-                align-items: stretch;
-                gap: 8px;
-                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
-                border: 1px solid rgba(0, 0, 0, 0.05);
-
-                /* Состояние скрыто по умолчанию */
-                opacity: 0;
-                visibility: hidden;
-                transform: translateY(-10px);
-                transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
-            }
-
-            /* Активное состояние (открыто) */
-            .nav-links.active {
-                opacity: 1;
-                visibility: visible;
-                transform: translateY(0);
-            }
-
-            /* Кнопки внутри мобильного выпадающего меню */
-            .nav-links .nav-btn {
-                text-align: center;
-                width: 100%;
-                box-shadow: none;
-                background-color: #fdfbf7;
-            }
-
-            /* --- Секция "Моя история" --- */
-            .about {
-                padding: 50px 0;
-            }
-
-            .about-text {
-                font-size: 15px;
-                text-align: left;
-            }
-
-            /* --- Секция Йога --- */
-            .yoga-section {
-                padding: 50px 0;
-            }
-
-            .cards-grid-3 {
-                grid-template-columns: 1fr;
-                /* Переводим все карточки в 1 колонку */
-                gap: 16px;
-            }
-
-            .card {
-                padding: 24px 20px;
-            }
-
-            .card .btn {
-                width: 100%;
-                /* Кнопка во всю ширину карточки для удобства клика пальцем */
-            }
-
-            /* --- Секция Телесная терапия --- */
-            .bodywork-hero {
-                padding: 60px 0;
-                margin: 20px 0;
-                border-radius: var(--radius-sm);
-            }
-
-            .bodywork-content {
-                padding: 0 20px !important;
-                text-align: center;
-            }
-
-            .bodywork-content h2 {
-                font-size: 26px;
-            }
-
-            .bodywork-content p {
-                font-size: 14px;
-            }
-
-            .bodywork-content .btn {
-                width: 100%;
-            }
-
-            .reviews-section {
-                padding: 30px 0 50px;
-            }
-
-            /* --- Секция Добаюкивание --- */
-            .dobayukivanie-section {
-                padding: 50px 0;
-            }
-
-            .dobayuki-grid {
-                grid-template-columns: 1fr;
-                /* Форма и фото идут друг за другом */
-                gap: 30px;
-            }
-
-            .booking-form {
-                padding: 24px 18px;
-            }
-
-            .form-group input {
-                font-size: 16px;
-                /* Защита от автозума в Safari на iPhone */
-                padding: 14px 16px;
-            }
-
-            .image-grid {
-                gap: 8px;
-            }
-
-            .image-grid img {
-                height: 120px;
-                /* Уменьшаем высоту галереи */
-            }
-
-            /* --- Секция Туры и поездки --- */
-            .tours-section {
-                padding: 50px 0;
-            }
-
-            .tour-card {
-                padding: 28px 20px;
-            }
-
-            .tour-card .btn {
-                width: 100%;
-            }
-
-            /* --- Футер --- */
-            footer {
-                padding: 40px 0 20px;
-            }
-
-            .footer-grid {
-                grid-template-columns: 1fr;
-                /* Колонки футера друг под другом */
-                gap: 28px;
-                text-align: center;
-            }
-
-            .footer-col h4 {
-                margin-bottom: 10px;
-            }
-        }
-    </style>
 </head>
 
 <body>
@@ -876,318 +30,318 @@
     </header>
 
     <!-- Навигационный блок -->
-        <nav class="nav-bar">
-            <div class="container nav-container">
+    <nav class="nav-bar">
+        <div class="container nav-container">
 
-                <!-- Название текущего блока (Отображается ТОЛЬКО на мобильных) -->
-                <div class="nav-current-title" id="currentSectionTitle"></div>
+            <!-- Название текущего блока (Отображается ТОЛЬКО на мобильных) -->
+            <div class="nav-current-title" id="currentSectionTitle"></div>
 
-                <!-- Кнопка гамбургер -->
-                <button class="nav-toggle" id="navToggle" aria-label="Открыть меню">
-                    <span class="hamburger-bar"></span>
-                    <span class="hamburger-bar"></span>
-                    <span class="hamburger-bar"></span>
-                </button>
+            <!-- Кнопка гамбургер -->
+            <button class="nav-toggle" id="navToggle" aria-label="Открыть меню">
+                <span class="hamburger-bar"></span>
+                <span class="hamburger-bar"></span>
+                <span class="hamburger-bar"></span>
+            </button>
 
-                <!-- Список кнопок -->
-                <ul class="nav-links" id="navMenu">
-                    <li><a href="#yoga" class="nav-btn" data-section="yoga">Йога</a></li>
-                    <li><a href="#bodywork" class="nav-btn" data-section="bodywork">Телесная терапия</a></li>
-                    <li><a href="#dobayukivanie" class="nav-btn" data-section="dobayukivanie">Добаюкивание</a></li>
-                    <li><a href="#tours" class="nav-btn" data-section="tours">Туры и поездки</a></li>
-                </ul>
+            <!-- Список кнопок -->
+            <ul class="nav-links" id="navMenu">
+                <li><a href="#yoga" class="nav-btn" data-section="yoga">Йога</a></li>
+                <li><a href="#bodywork" class="nav-btn" data-section="bodywork">Телесная терапия</a></li>
+                <li><a href="#dobayukivanie" class="nav-btn" data-section="dobayukivanie">Добаюкивание</a></li>
+                <li><a href="#tours" class="nav-btn" data-section="tours">Туры и поездки</a></li>
+            </ul>
 
+        </div>
+    </nav>
+
+    <!-- Моя история -->
+    <section class="about">
+        <div class="container">
+            <h2 class="section-title">Моя история</h2>
+            <div class="about-text">
+                <p>Мой путь начался более 10 лет назад. Я просто попала на занятия по йоге, и оказавшись на коврике,
+                    я
+                    почувствовала себя ДОМА. У каждого есть свой дом, вне зависимости от наличия или отсутствия
+                    недвижимости, этот дом, не квартира или апартаменты, ДОМ - ЭТО ТВОЕ ТЕЛО.</p>
+                <p>В теле хранятся все воспоминания, все чувства и эмоции, все ситуации, которые происходили с тобой
+                    в
+                    любой момент твоей жизни.</p>
+                <p>Я начала знакомство со своим телом через ЙОГУ, потом появилась психологическая практика по
+                    перепроживанию раннего детства - ДОБАЮКИВАНИЕ, затем я пошла учиться на ТЕЛЕСНОГО
+                    ПСИХОТЕРАПЕВТА. И
+                    думаю у этого пути познания не будет конца...</p>
+                <p>Все знания и навыки складываются внутри меня в целостную картину понимания работы тела и психики
+                    как
+                    единого механизма.</p>
             </div>
-        </nav>
+        </div>
+    </section>
 
-        <!-- Моя история -->
-        <section class="about">
-            <div class="container">
-                <h2 class="section-title">Моя история</h2>
-                <div class="about-text">
-                    <p>Мой путь начался более 10 лет назад. Я просто попала на занятия по йоге, и оказавшись на коврике,
-                        я
-                        почувствовала себя ДОМА. У каждого есть свой дом, вне зависимости от наличия или отсутствия
-                        недвижимости, этот дом, не квартира или апартаменты, ДОМ - ЭТО ТВОЕ ТЕЛО.</p>
-                    <p>В теле хранятся все воспоминания, все чувства и эмоции, все ситуации, которые происходили с тобой
-                        в
-                        любой момент твоей жизни.</p>
-                    <p>Я начала знакомство со своим телом через ЙОГУ, потом появилась психологическая практика по
-                        перепроживанию раннего детства - ДОБАЮКИВАНИЕ, затем я пошла учиться на ТЕЛЕСНОГО
-                        ПСИХОТЕРАПЕВТА. И
-                        думаю у этого пути познания не будет конца...</p>
-                    <p>Все знания и навыки складываются внутри меня в целостную картину понимания работы тела и психики
-                        как
-                        единого механизма.</p>
+    <!-- Секция Йога -->
+    <section id="yoga" class="yoga-section">
+        <div class="container">
+            <h2 class="section-title">Йога</h2>
+            <p class="section-desc">Практика осознанного движения и дыхания для обретения внутреннего баланса и
+                физического здоровья.</p>
+
+            <div class="cards-grid-3">
+                <!-- Блок 1 -->
+                <div class="card">
+                    <div>
+                        <h3>Студия Зеленодольск</h3>
+                        <p><strong>Адрес:</strong> ул. Ленина, д. 24 (Центр практики)</p>
+                    </div>
+                    <a href="https://taplink.cc/" target="_blank" class="btn">Записаться</a>
+                </div>
+
+                <!-- Блок 2 -->
+                <div class="card">
+                    <div>
+                        <h3>Студия Казань</h3>
+                        <p><strong>Адрес:</strong> ул. Баумана, д. 45 (Зал пространства &laquo;Лофт&raquo;)</p>
+                    </div>
+                    <a href="https://taplink.cc/" target="_blank" class="btn">Записаться</a>
+                </div>
+
+                <!-- Блок 3 -->
+                <div class="card">
+                    <div>
+                        <h3>Индивидуальные занятия</h3>
+                        <p>Персональная программа практики с учетом ваших целей и особенностей тела.</p>
+                    </div>
+                    <a href="https://taplink.cc/" target="_blank" class="btn">Записаться</a>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Секция Йога -->
-        <section id="yoga" class="yoga-section">
-            <div class="container">
-                <h2 class="section-title">Йога</h2>
-                <p class="section-desc">Практика осознанного движения и дыхания для обретения внутреннего баланса и
-                    физического здоровья.</p>
+    <!-- Секция Телесная терапия -->
+    <section id="bodywork" class="container">
+        <div class="bodywork-hero">
+            <div style="padding: 0 40px;" class="bodywork-content">
+                <h2>Телесная терапия</h2>
+                <p>Глубокая работа с телесными блоками и зажимами, позволяющая высвободить подавленные эмоции и
+                    вернуть
+                    ощущение лёгкости и целостности.</p>
+                <a href="https://taplink.cc/" target="_blank" class="btn"
+                    style="background-color: var(--white); color: var(--text-dark);">Записаться на сессию</a>
+            </div>
+        </div>
 
-                <div class="cards-grid-3">
-                    <!-- Блок 1 -->
-                    <div class="card">
-                        <div>
-                            <h3>Студия Зеленодольск</h3>
-                            <p><strong>Адрес:</strong> ул. Ленина, д. 24 (Центр практики)</p>
+        <!-- Блок с отзывами -->
+        <div class="reviews-section">
+            <h3 style="font-size: 22px; margin-bottom: 24px;">Отзывы клиентов</h3>
+            <div class="cards-grid-3">
+                <div class="review-card">
+                    <p>&laquo;После первой сессии телесной терапии ушло постоянное напряжение в плечах, которое
+                        мучило
+                        меня годами.&raquo;</p>
+                    <div class="review-author">Елена М.</div>
+                </div>
+                <div class="review-card">
+                    <p>&laquo;Анна невероятно тонко чувствует состояние. Появилось ощущение глубокого спокойствия и
+                        принятия себя.&raquo;</p>
+                    <div class="review-author">Мария К.</div>
+                </div>
+                <div class="review-card">
+                    <p>&laquo;Очень мягкая и бережная работа. Удалось отпустить старые обиды и заново почувствовать
+                        свое
+                        тело.&raquo;</p>
+                    <div class="review-author">Ольга Р.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Секция Добаюкивание -->
+    <section id="dobayukivanie" class="dobayukivanie-section">
+        <div class="container">
+            <h2 class="section-title">Добаюкивание</h2>
+            <p class="section-desc">Уникальная практика перепроживания детского опыта, восполнения базового доверия
+                к
+                миру и обретения фундаментальной опоры внутри себя.</p>
+
+            <div class="dobayuki-grid">
+                <!-- Форма записи -->
+                <div class="booking-form">
+                    <h3 style="margin-bottom: 20px;">Записаться на практический сеанс</h3>
+                    <form
+                        onsubmit="event.preventDefault(); alert('Спасибо за заявку! Я свяжусь с вами в ближайшее время.');">
+                        <div class="form-group">
+                            <label for="name">Ваше имя</label>
+                            <input type="text" id="name" placeholder="Введите имя" required>
                         </div>
-                        <a href="https://taplink.cc/" target="_blank" class="btn">Записаться</a>
-                    </div>
-
-                    <!-- Блок 2 -->
-                    <div class="card">
-                        <div>
-                            <h3>Студия Казань</h3>
-                            <p><strong>Адрес:</strong> ул. Баумана, д. 45 (Зал пространства &laquo;Лофт&raquo;)</p>
+                        <div class="form-group">
+                            <label for="phone">Номер телефона</label>
+                            <input type="tel" id="phone" placeholder="+7 (___) ___-__-__" required>
                         </div>
-                        <a href="https://taplink.cc/" target="_blank" class="btn">Записаться</a>
-                    </div>
+                        <button type="submit" class="btn" style="width: 100%;">Отправить заявку</button>
+                    </form>
+                </div>
 
-                    <!-- Блок 3 -->
-                    <div class="card">
-                        <div>
-                            <h3>Индивидуальные занятия</h3>
-                            <p>Персональная программа практики с учетом ваших целей и особенностей тела.</p>
-                        </div>
-                        <a href="https://taplink.cc/" target="_blank" class="btn">Записаться</a>
-                    </div>
+                <!-- Галерея картинок (сетка) -->
+                <div class="image-grid">
+                    <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=500&q=80"
+                        alt="Практика 1">
+                    <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=500&q=80"
+                        alt="Практика 2">
+                    <img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=500&q=80"
+                        alt="Практика 3">
+                    <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=500&q=80"
+                        alt="Практика 4">
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Секция Телесная терапия -->
-        <section id="bodywork" class="container">
-            <div class="bodywork-hero">
-                <div style="padding: 0 40px;" class="bodywork-content">
-                    <h2>Телесная терапия</h2>
-                    <p>Глубокая работа с телесными блоками и зажимами, позволяющая высвободить подавленные эмоции и
-                        вернуть
-                        ощущение лёгкости и целостности.</p>
-                    <a href="https://taplink.cc/" target="_blank" class="btn"
-                        style="background-color: var(--white); color: var(--text-dark);">Записаться на сессию</a>
+    <!-- Секция Туры и поездки -->
+    <section id="tours" class="tours-section">
+        <div class="container">
+            <h2 class="section-title">Туры и поездки</h2>
+            <p class="section-desc">Выездные ретриты, путешествия в места силы и йога-уикенды для полной
+                перезагрузки.
+            </p>
+
+            <div class="cards-grid-3">
+                <div class="tour-card tour-card-1">
+                    <div>
+                        <h3>Горный ретрит &laquo;Перезагрузка&raquo;</h3>
+                        <p>5 дней йоги, медитаций и чистейшего горного воздуха. Погружение в тишину и восстановление
+                            ресурсов.</p>
+                    </div>
+                    <a href="https://taplink.cc/" target="_blank" class="btn btn-outline">Подробнее</a>
+                </div>
+
+                <div class="tour-card tour-card-2">
+                    <div>
+                        <h3>Йога-уикенд на Волге</h3>
+                        <p>Выходные на природе: практики на свежем воздухе, телесная терапия, вечерние костры и
+                            баня.
+                        </p>
+                    </div>
+                    <a href="https://taplink.cc/" target="_blank" class="btn btn-outline">Подробнее</a>
+                </div>
+
+                <div class="tour-card tour-card-3">
+                    <div>
+                        <h3>Морской ретрит &laquo;Источник света&raquo;</h3>
+                        <p>Неделя глубоких телесных практик у моря. Гармония звуков волн, йоги и авторских
+                            медитаций.
+                        </p>
+                    </div>
+                    <a href="https://taplink.cc/" target="_blank" class="btn btn-outline">Подробнее</a>
                 </div>
             </div>
+        </div>
+    </section>
 
-            <!-- Блок с отзывами -->
-            <div class="reviews-section">
-                <h3 style="font-size: 22px; margin-bottom: 24px;">Отзывы клиентов</h3>
-                <div class="cards-grid-3">
-                    <div class="review-card">
-                        <p>&laquo;После первой сессии телесной терапии ушло постоянное напряжение в плечах, которое
-                            мучило
-                            меня годами.&raquo;</p>
-                        <div class="review-author">Елена М.</div>
-                    </div>
-                    <div class="review-card">
-                        <p>&laquo;Анна невероятно тонко чувствует состояние. Появилось ощущение глубокого спокойствия и
-                            принятия себя.&raquo;</p>
-                        <div class="review-author">Мария К.</div>
-                    </div>
-                    <div class="review-card">
-                        <p>&laquo;Очень мягкая и бережная работа. Удалось отпустить старые обиды и заново почувствовать
-                            свое
-                            тело.&raquo;</p>
-                        <div class="review-author">Ольга Р.</div>
-                    </div>
+    <!-- Футер -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Анна Павлова</h4>
+                    <p>Преподаватель Йоги и Телесный терапевт.</p>
+                    <p>Помогаю вернуться к себе через работу с телом и душой.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Контакты</h4>
+                    <p>Телефон: +7 (900) 000-00-00</p>
+                    <p>Email: info@annapavlova.ru</p>
+                    <a href="https://taplink.cc/" target="_blank">Taplink профиль</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Локации</h4>
+                    <p>г. Зеленодольск, ул. Ленина, д. 24</p>
+                    <p>г. Казань, ул. Баумана, д. 45</p>
                 </div>
             </div>
-        </section>
-
-        <!-- Секция Добаюкивание -->
-        <section id="dobayukivanie" class="dobayukivanie-section">
-            <div class="container">
-                <h2 class="section-title">Добаюкивание</h2>
-                <p class="section-desc">Уникальная практика перепроживания детского опыта, восполнения базового доверия
-                    к
-                    миру и обретения фундаментальной опоры внутри себя.</p>
-
-                <div class="dobayuki-grid">
-                    <!-- Форма записи -->
-                    <div class="booking-form">
-                        <h3 style="margin-bottom: 20px;">Записаться на практический сеанс</h3>
-                        <form
-                            onsubmit="event.preventDefault(); alert('Спасибо за заявку! Я свяжусь с вами в ближайшее время.');">
-                            <div class="form-group">
-                                <label for="name">Ваше имя</label>
-                                <input type="text" id="name" placeholder="Введите имя" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="phone">Номер телефона</label>
-                                <input type="tel" id="phone" placeholder="+7 (___) ___-__-__" required>
-                            </div>
-                            <button type="submit" class="btn" style="width: 100%;">Отправить заявку</button>
-                        </form>
-                    </div>
-
-                    <!-- Галерея картинок (сетка) -->
-                    <div class="image-grid">
-                        <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=500&q=80"
-                            alt="Практика 1">
-                        <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=500&q=80"
-                            alt="Практика 2">
-                        <img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=500&q=80"
-                            alt="Практика 3">
-                        <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=500&q=80"
-                            alt="Практика 4">
-                    </div>
-                </div>
+            <div class="footer-bottom">
+                &copy; 2026 Анна Павлова. Все права защищены.
             </div>
-        </section>
+        </div>
+    </footer>
 
-        <!-- Секция Туры и поездки -->
-        <section id="tours" class="tours-section">
-            <div class="container">
-                <h2 class="section-title">Туры и поездки</h2>
-                <p class="section-desc">Выездные ретриты, путешествия в места силы и йога-уикенды для полной
-                    перезагрузки.
-                </p>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const navToggle = document.getElementById('navToggle');
+            const navMenu = document.getElementById('navMenu');
+            const navButtons = document.querySelectorAll('.nav-btn');
+            const currentTitleEl = document.getElementById('currentSectionTitle');
 
-                <div class="cards-grid-3">
-                    <div class="tour-card tour-card-1">
-                        <div>
-                            <h3>Горный ретрит &laquo;Перезагрузка&raquo;</h3>
-                            <p>5 дней йоги, медитаций и чистейшего горного воздуха. Погружение в тишину и восстановление
-                                ресурсов.</p>
-                        </div>
-                        <a href="https://taplink.cc/" target="_blank" class="btn btn-outline">Подробнее</a>
-                    </div>
+            // Названия секций для мобильной шапки
+            const sectionTitles = {
+                'yoga': 'Йога',
+                'bodywork': 'Телесная терапия',
+                'dobayukivanie': 'Добаюкивание',
+                'tours': 'Туры и поездки'
+            };
 
-                    <div class="tour-card tour-card-2">
-                        <div>
-                            <h3>Йога-уикенд на Волге</h3>
-                            <p>Выходные на природе: практики на свежем воздухе, телесная терапия, вечерние костры и
-                                баня.
-                            </p>
-                        </div>
-                        <a href="https://taplink.cc/" target="_blank" class="btn btn-outline">Подробнее</a>
-                    </div>
+            // --- МОБИЛЬНОЕ МЕНЮ (Открыть / Закрыть) ---
+            const toggleMenu = () => {
+                navToggle.classList.toggle('active');
+                navMenu.classList.toggle('active');
+            };
 
-                    <div class="tour-card tour-card-3">
-                        <div>
-                            <h3>Морской ретрит &laquo;Источник света&raquo;</h3>
-                            <p>Неделя глубоких телесных практик у моря. Гармония звуков волн, йоги и авторских
-                                медитаций.
-                            </p>
-                        </div>
-                        <a href="https://taplink.cc/" target="_blank" class="btn btn-outline">Подробнее</a>
-                    </div>
-                </div>
-            </div>
-        </section>
+            if (navToggle) {
+                navToggle.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    toggleMenu();
+                });
+            }
 
-        <!-- Футер -->
-        <footer>
-            <div class="container">
-                <div class="footer-grid">
-                    <div class="footer-col">
-                        <h4>Анна Павлова</h4>
-                        <p>Преподаватель Йоги и Телесный терапевт.</p>
-                        <p>Помогаю вернуться к себе через работу с телом и душой.</p>
-                    </div>
-                    <div class="footer-col">
-                        <h4>Контакты</h4>
-                        <p>Телефон: +7 (900) 000-00-00</p>
-                        <p>Email: info@annapavlova.ru</p>
-                        <a href="https://taplink.cc/" target="_blank">Taplink профиль</a>
-                    </div>
-                    <div class="footer-col">
-                        <h4>Локации</h4>
-                        <p>г. Зеленодольск, ул. Ленина, д. 24</p>
-                        <p>г. Казань, ул. Баумана, д. 45</p>
-                    </div>
-                </div>
-                <div class="footer-bottom">
-                    &copy; 2026 Анна Павлова. Все права защищены.
-                </div>
-            </div>
-        </footer>
-
-        <script>
-            document.addEventListener('DOMContentLoaded', () => {
-                const navToggle = document.getElementById('navToggle');
-                const navMenu = document.getElementById('navMenu');
-                const navButtons = document.querySelectorAll('.nav-btn');
-                const currentTitleEl = document.getElementById('currentSectionTitle');
-
-                // Названия секций для мобильной шапки
-                const sectionTitles = {
-                    'yoga': 'Йога',
-                    'bodywork': 'Телесная терапия',
-                    'dobayukivanie': 'Добаюкивание',
-                    'tours': 'Туры и поездки'
-                };
-
-                // --- МОБИЛЬНОЕ МЕНЮ (Открыть / Закрыть) ---
-                const toggleMenu = () => {
-                    navToggle.classList.toggle('active');
-                    navMenu.classList.toggle('active');
-                };
-
-                if (navToggle) {
-                    navToggle.addEventListener('click', (e) => {
-                        e.stopPropagation();
+            navButtons.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (navMenu.classList.contains('active')) {
                         toggleMenu();
-                    });
-                }
-
-                navButtons.forEach(link => {
-                    link.addEventListener('click', () => {
-                        if (navMenu.classList.contains('active')) {
-                            toggleMenu();
-                        }
-                    });
-                });
-
-                document.addEventListener('click', (e) => {
-                    if (navMenu && !navMenu.contains(e.target) && !navToggle.contains(e.target)) {
-                        if (navMenu.classList.contains('active')) {
-                            toggleMenu();
-                        }
-                    }
-                });
-
-                // --- ОТСЛЕЖИВАНИЕ СЕКЦИИ ТОЛЬКО ДЛЯ МОБИЛЬНЫХ ---
-                const isMobile = () => window.innerWidth <= 768;
-                const sections = document.querySelectorAll('section[id]');
-
-                const observerOptions = {
-                    root: null,
-                    rootMargin: '-20% 0px -60% 0px',
-                    threshold: 0
-                };
-
-                const observer = new IntersectionObserver((entries) => {
-                    // Выполняем логику отслеживания только если ширина экрана мобильная
-                    if (!isMobile()) return;
-
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            const id = entry.target.getAttribute('id');
-
-                            if (sectionTitles[id] && currentTitleEl) {
-                                currentTitleEl.textContent = sectionTitles[id];
-                                currentTitleEl.classList.add('visible');
-                            }
-                        }
-                    });
-                }, observerOptions);
-
-                sections.forEach(section => observer.observe(section));
-
-                // Скрытие названия в самом верху страницы на мобильных
-                window.addEventListener('scroll', () => {
-                    if (isMobile() && window.scrollY < 300 && currentTitleEl) {
-                        currentTitleEl.classList.remove('visible');
                     }
                 });
             });
-        </script>
+
+            document.addEventListener('click', (e) => {
+                if (navMenu && !navMenu.contains(e.target) && !navToggle.contains(e.target)) {
+                    if (navMenu.classList.contains('active')) {
+                        toggleMenu();
+                    }
+                }
+            });
+
+            // --- ОТСЛЕЖИВАНИЕ СЕКЦИИ ТОЛЬКО ДЛЯ МОБИЛЬНЫХ ---
+            const isMobile = () => window.innerWidth <= 768;
+            const sections = document.querySelectorAll('section[id]');
+
+            const observerOptions = {
+                root: null,
+                rootMargin: '-20% 0px -60% 0px',
+                threshold: 0
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                // Выполняем логику отслеживания только если ширина экрана мобильная
+                if (!isMobile()) return;
+
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const id = entry.target.getAttribute('id');
+
+                        if (sectionTitles[id] && currentTitleEl) {
+                            currentTitleEl.textContent = sectionTitles[id];
+                            currentTitleEl.classList.add('visible');
+                        }
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => observer.observe(section));
+
+            // Скрытие названия в самом верху страницы на мобильных
+            window.addEventListener('scroll', () => {
+                if (isMobile() && window.scrollY < 300 && currentTitleEl) {
+                    currentTitleEl.classList.remove('visible');
+                }
+            });
+        });
+    </script>
 
 </body>
 
