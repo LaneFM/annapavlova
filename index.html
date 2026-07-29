@@ -16,333 +16,265 @@
 
 <body>
 
-    <!-- Обновленная секция HERO на всю ширину -->
-    <header class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <h1>Анна<br>Павлова</h1>
-                <ul class="hero-list">
-                    <li>Преподаватель Йоги</li>
-                    <li>Телесный терапевт</li>
-                </ul>
+  <!-- HERO -->
+  <header class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <h1 id="heroName"></h1>
+        <ul class="hero-list" id="heroRoles"></ul>
+      </div>
+    </div>
+  </header>
+
+  <!-- NAV -->
+  <nav class="nav-bar">
+    <div class="container nav-container">
+      <div class="nav-current-title" id="currentSectionTitle"></div>
+      <button class="nav-toggle" id="navToggle" aria-label="Открыть меню">
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+      </button>
+      <ul class="nav-links" id="navMenu">
+        <li><a href="#yoga" class="nav-btn" data-section="yoga">Йога</a></li>
+        <li><a href="#bodywork" class="nav-btn" data-section="bodywork">Телесная терапия</a></li>
+        <li><a href="#dobayukivanie" class="nav-btn" data-section="dobayukivanie">Добаюкивание</a></li>
+        <li><a href="#tours" class="nav-btn" data-section="tours">Туры и поездки</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ABOUT -->
+  <section class="about">
+    <div class="container">
+      <h2 class="section-title" id="aboutTitle"></h2>
+      <div class="about-text" id="aboutText"></div>
+    </div>
+  </section>
+
+  <!-- YOGA -->
+  <section id="yoga" class="yoga-section">
+    <div class="container">
+      <h2 class="section-title" id="yogaTitle"></h2>
+      <p class="section-desc" id="yogaDesc"></p>
+      <div class="cards-grid-3" id="yogaCards"></div>
+    </div>
+  </section>
+
+  <!-- BODYWORK -->
+  <section id="bodywork" class="container">
+    <div class="bodywork-hero">
+      <div class="bodywork-content">
+        <h2 id="bodyworkTitle"></h2>
+        <p id="bodyworkDesc"></p>
+        <a href="#" id="bodyworkBtn" target="_blank" class="btn" style="background-color: var(--white); color: var(--text-dark);"></a>
+      </div>
+    </div>
+    <div class="reviews-section">
+      <h3 style="font-size: 22px; margin-bottom: 24px;" id="reviewsTitle"></h3>
+      <div class="cards-grid-3" id="reviewsGrid"></div>
+    </div>
+  </section>
+
+  <!-- DOBAYUKIVANIE -->
+  <section id="dobayukivanie" class="dobayukivanie-section">
+    <div class="container">
+      <h2 class="section-title" id="dobayukiTitle"></h2>
+      <p class="section-desc" id="dobayukiDesc"></p>
+      <div class="dobayuki-grid">
+        <div class="booking-form">
+          <h3 style="margin-bottom: 20px;" id="formTitle"></h3>
+          <form onsubmit="event.preventDefault(); alert('Спасибо за заявку!');">
+            <div class="form-group">
+              <label id="labelName" for="name"></label>
+              <input type="text" id="name" required>
             </div>
-        </div>
-    </header>
-
-    <!-- Навигационный блок -->
-    <nav class="nav-bar">
-        <div class="container nav-container">
-
-            <!-- Название текущего блока (Отображается ТОЛЬКО на мобильных) -->
-            <div class="nav-current-title" id="currentSectionTitle"></div>
-
-            <!-- Кнопка гамбургер -->
-            <button class="nav-toggle" id="navToggle" aria-label="Открыть меню">
-                <span class="hamburger-bar"></span>
-                <span class="hamburger-bar"></span>
-                <span class="hamburger-bar"></span>
-            </button>
-
-            <!-- Список кнопок -->
-            <ul class="nav-links" id="navMenu">
-                <li><a href="#yoga" class="nav-btn" data-section="yoga">Йога</a></li>
-                <li><a href="#bodywork" class="nav-btn" data-section="bodywork">Телесная терапия</a></li>
-                <li><a href="#dobayukivanie" class="nav-btn" data-section="dobayukivanie">Добаюкивание</a></li>
-                <li><a href="#tours" class="nav-btn" data-section="tours">Туры и поездки</a></li>
-            </ul>
-
-        </div>
-    </nav>
-
-    <!-- Моя история -->
-    <section class="about">
-        <div class="container">
-            <h2 class="section-title">Моя история</h2>
-            <div class="about-text">
-                <p>Мой путь начался более 10 лет назад. Я просто попала на занятия по йоге, и оказавшись на коврике,
-                    я
-                    почувствовала себя ДОМА. У каждого есть свой дом, вне зависимости от наличия или отсутствия
-                    недвижимости, этот дом, не квартира или апартаменты, ДОМ - ЭТО ТВОЕ ТЕЛО.</p>
-                <p>В теле хранятся все воспоминания, все чувства и эмоции, все ситуации, которые происходили с тобой
-                    в
-                    любой момент твоей жизни.</p>
-                <p>Я начала знакомство со своим телом через ЙОГУ, потом появилась психологическая практика по
-                    перепроживанию раннего детства - ДОБАЮКИВАНИЕ, затем я пошла учиться на ТЕЛЕСНОГО
-                    ПСИХОТЕРАПЕВТА. И
-                    думаю у этого пути познания не будет конца...</p>
-                <p>Все знания и навыки складываются внутри меня в целостную картину понимания работы тела и психики
-                    как
-                    единого механизма.</p>
+            <div class="form-group">
+              <label id="labelPhone" for="phone"></label>
+              <input type="tel" id="phone" required>
             </div>
+            <button type="submit" class="btn" style="width: 100%;" id="formSubmitBtn"></button>
+          </form>
         </div>
-    </section>
-
-    <!-- Секция Йога -->
-    <section id="yoga" class="yoga-section">
-        <div class="container">
-            <h2 class="section-title">Йога</h2>
-            <p class="section-desc">Практика осознанного движения и дыхания для обретения внутреннего баланса и
-                физического здоровья.</p>
-
-            <div class="cards-grid-3">
-                <!-- Блок 1 -->
-                <div class="card">
-                    <div>
-                        <h3>Студия Зеленодольск</h3>
-                        <p><strong>Адрес:</strong> ул. Ленина, д. 24 (Центр практики)</p>
-                    </div>
-                    <a href="https://taplink.cc/" target="_blank" class="btn">Записаться</a>
-                </div>
-
-                <!-- Блок 2 -->
-                <div class="card">
-                    <div>
-                        <h3>Студия Казань</h3>
-                        <p><strong>Адрес:</strong> ул. Баумана, д. 45 (Зал пространства &laquo;Лофт&raquo;)</p>
-                    </div>
-                    <a href="https://taplink.cc/" target="_blank" class="btn">Записаться</a>
-                </div>
-
-                <!-- Блок 3 -->
-                <div class="card">
-                    <div>
-                        <h3>Индивидуальные занятия</h3>
-                        <p>Персональная программа практики с учетом ваших целей и особенностей тела.</p>
-                    </div>
-                    <a href="https://taplink.cc/" target="_blank" class="btn">Записаться</a>
-                </div>
-            </div>
+        <div class="image-grid">
+          <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=500&q=80" alt="Галерея 1">
+          <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=500&q=80" alt="Галерея 2">
+          <img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=500&q=80" alt="Галерея 3">
+          <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=500&q=80" alt="Галерея 4">
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- Секция Телесная терапия -->
-    <section id="bodywork" class="container">
-        <div class="bodywork-hero">
-            <div style="padding: 0 40px;" class="bodywork-content">
-                <h2>Телесная терапия</h2>
-                <p>Глубокая работа с телесными блоками и зажимами, позволяющая высвободить подавленные эмоции и
-                    вернуть
-                    ощущение лёгкости и целостности.</p>
-                <a href="https://taplink.cc/" target="_blank" class="btn"
-                    style="background-color: var(--white); color: var(--text-dark);">Записаться на сессию</a>
-            </div>
+  <!-- TOURS -->
+  <section id="tours" class="tours-section">
+    <div class="container">
+      <h2 class="section-title" id="toursTitle"></h2>
+      <p class="section-desc" id="toursDesc"></p>
+      <div class="cards-grid-3" id="toursGrid"></div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h4 id="footerName"></h4>
+          <div id="footerBio"></div>
         </div>
-
-        <!-- Блок с отзывами -->
-        <div class="reviews-section">
-            <h3 style="font-size: 22px; margin-bottom: 24px;">Отзывы клиентов</h3>
-            <div class="cards-grid-3">
-                <div class="review-card">
-                    <p>&laquo;После первой сессии телесной терапии ушло постоянное напряжение в плечах, которое
-                        мучило
-                        меня годами.&raquo;</p>
-                    <div class="review-author">Елена М.</div>
-                </div>
-                <div class="review-card">
-                    <p>&laquo;Анна невероятно тонко чувствует состояние. Появилось ощущение глубокого спокойствия и
-                        принятия себя.&raquo;</p>
-                    <div class="review-author">Мария К.</div>
-                </div>
-                <div class="review-card">
-                    <p>&laquo;Очень мягкая и бережная работа. Удалось отпустить старые обиды и заново почувствовать
-                        свое
-                        тело.&raquo;</p>
-                    <div class="review-author">Ольга Р.</div>
-                </div>
-            </div>
+        <div class="footer-col">
+          <h4 id="footerContactsTitle"></h4>
+          <p id="footerPhone"></p>
+          <p id="footerEmail"></p>
+          <a href="#" id="footerTaplink" target="_blank">Taplink профиль</a>
         </div>
-    </section>
-
-    <!-- Секция Добаюкивание -->
-    <section id="dobayukivanie" class="dobayukivanie-section">
-        <div class="container">
-            <h2 class="section-title">Добаюкивание</h2>
-            <p class="section-desc">Уникальная практика перепроживания детского опыта, восполнения базового доверия
-                к
-                миру и обретения фундаментальной опоры внутри себя.</p>
-
-            <div class="dobayuki-grid">
-                <!-- Форма записи -->
-                <div class="booking-form">
-                    <h3 style="margin-bottom: 20px;">Записаться на практический сеанс</h3>
-                    <form
-                        onsubmit="event.preventDefault(); alert('Спасибо за заявку! Я свяжусь с вами в ближайшее время.');">
-                        <div class="form-group">
-                            <label for="name">Ваше имя</label>
-                            <input type="text" id="name" placeholder="Введите имя" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="phone">Номер телефона</label>
-                            <input type="tel" id="phone" placeholder="+7 (___) ___-__-__" required>
-                        </div>
-                        <button type="submit" class="btn" style="width: 100%;">Отправить заявку</button>
-                    </form>
-                </div>
-
-                <!-- Галерея картинок (сетка) -->
-                <div class="image-grid">
-                    <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=500&q=80"
-                        alt="Практика 1">
-                    <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=500&q=80"
-                        alt="Практика 2">
-                    <img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=500&q=80"
-                        alt="Практика 3">
-                    <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=500&q=80"
-                        alt="Практика 4">
-                </div>
-            </div>
+        <div class="footer-col">
+          <h4 id="footerLocationsTitle"></h4>
+          <div id="footerLocations"></div>
         </div>
-    </section>
+      </div>
+      <div class="footer-bottom" id="footerCopyright"></div>
+    </div>
+  </footer>
 
-    <!-- Секция Туры и поездки -->
-    <section id="tours" class="tours-section">
-        <div class="container">
-            <h2 class="section-title">Туры и поездки</h2>
-            <p class="section-desc">Выездные ретриты, путешествия в места силы и йога-уикенды для полной
-                перезагрузки.
-            </p>
+  <!-- 1. Подключение файла с текстом -->
+  <script src="content.js"></script>
 
-            <div class="cards-grid-3">
-                <div class="tour-card tour-card-1">
-                    <div>
-                        <h3>Горный ретрит &laquo;Перезагрузка&raquo;</h3>
-                        <p>5 дней йоги, медитаций и чистейшего горного воздуха. Погружение в тишину и восстановление
-                            ресурсов.</p>
-                    </div>
-                    <a href="https://taplink.cc/" target="_blank" class="btn btn-outline">Подробнее</a>
-                </div>
+  <!-- 2. Скрипт подстановки текстов и работы меню -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Загрузка JSON и отрисовка контента
+    fetch('content.json')
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`Ошибка загрузки JSON: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then(siteContent => {
+        // --- ОТРИСОВКА КОНТЕНТА ИЗ content.json ---
+        
+        // Hero
+        document.getElementById('heroName').innerHTML = siteContent.hero.name;
+        document.getElementById('heroRoles').innerHTML = siteContent.hero.roles.map(role => `<li>${role}</li>`).join('');
 
-                <div class="tour-card tour-card-2">
-                    <div>
-                        <h3>Йога-уикенд на Волге</h3>
-                        <p>Выходные на природе: практики на свежем воздухе, телесная терапия, вечерние костры и
-                            баня.
-                        </p>
-                    </div>
-                    <a href="https://taplink.cc/" target="_blank" class="btn btn-outline">Подробнее</a>
-                </div>
+        // About
+        document.getElementById('aboutTitle').textContent = siteContent.about.title;
+        document.getElementById('aboutText').innerHTML = siteContent.about.paragraphs.map(p => `<p>${p}</p>`).join('');
 
-                <div class="tour-card tour-card-3">
-                    <div>
-                        <h3>Морской ретрит &laquo;Источник света&raquo;</h3>
-                        <p>Неделя глубоких телесных практик у моря. Гармония звуков волн, йоги и авторских
-                            медитаций.
-                        </p>
-                    </div>
-                    <a href="https://taplink.cc/" target="_blank" class="btn btn-outline">Подробнее</a>
-                </div>
+        // Yoga
+        document.getElementById('yogaTitle').textContent = siteContent.yoga.title;
+        document.getElementById('yogaDesc').textContent = siteContent.yoga.description;
+        document.getElementById('yogaCards').innerHTML = siteContent.yoga.cards.map(card => `
+          <div class="card">
+            <div>
+              <h3>${card.title}</h3>
+              <p>${card.address}</p>
             </div>
-        </div>
-    </section>
+            <a href="${card.buttonUrl}" target="_blank" class="btn">${card.buttonText}</a>
+          </div>
+        `).join('');
 
-    <!-- Футер -->
-    <footer>
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col">
-                    <h4>Анна Павлова</h4>
-                    <p>Преподаватель Йоги и Телесный терапевт.</p>
-                    <p>Помогаю вернуться к себе через работу с телом и душой.</p>
-                </div>
-                <div class="footer-col">
-                    <h4>Контакты</h4>
-                    <p>Телефон: +7 (900) 000-00-00</p>
-                    <p>Email: info@annapavlova.ru</p>
-                    <a href="https://taplink.cc/" target="_blank">Taplink профиль</a>
-                </div>
-                <div class="footer-col">
-                    <h4>Локации</h4>
-                    <p>г. Зеленодольск, ул. Ленина, д. 24</p>
-                    <p>г. Казань, ул. Баумана, д. 45</p>
-                </div>
+        // Bodywork
+        document.getElementById('bodyworkTitle').textContent = siteContent.bodywork.title;
+        document.getElementById('bodyworkDesc').textContent = siteContent.bodywork.description;
+        const bodyworkBtn = document.getElementById('bodyworkBtn');
+        bodyworkBtn.textContent = siteContent.bodywork.buttonText;
+        bodyworkBtn.href = siteContent.bodywork.buttonUrl;
+
+        document.getElementById('reviewsTitle').textContent = siteContent.bodywork.reviewsTitle;
+        document.getElementById('reviewsGrid').innerHTML = siteContent.bodywork.reviews.map(r => `
+          <div class="review-card">
+            <p>${r.text}</p>
+            <div class="review-author">${r.author}</div>
+          </div>
+        `).join('');
+
+        // Dobayukivanie
+        document.getElementById('dobayukiTitle').textContent = siteContent.dobayukivanie.title;
+        document.getElementById('dobayukiDesc').textContent = siteContent.dobayukivanie.description;
+        document.getElementById('formTitle').textContent = siteContent.dobayukivanie.formTitle;
+        document.getElementById('labelName').textContent = siteContent.dobayukivanie.nameLabel;
+        document.getElementById('name').placeholder = siteContent.dobayukivanie.namePlaceholder;
+        document.getElementById('labelPhone').textContent = siteContent.dobayukivanie.phoneLabel;
+        document.getElementById('phone').placeholder = siteContent.dobayukivanie.phonePlaceholder;
+        document.getElementById('formSubmitBtn').textContent = siteContent.dobayukivanie.submitButtonText;
+
+        // Tours
+        document.getElementById('toursTitle').textContent = siteContent.tours.title;
+        document.getElementById('toursDesc').textContent = siteContent.tours.description;
+        document.getElementById('toursGrid').innerHTML = siteContent.tours.items.map((tour, idx) => `
+          <div class="tour-card tour-card-${idx}">
+            <div>
+              <h3>${tour.title}</h3>
+              <p>${tour.description}</p>
             </div>
-            <div class="footer-bottom">
-                &copy; 2026 Анна Павлова. Все права защищены.
-            </div>
-        </div>
-    </footer>
+            <a href="${tour.buttonUrl}" target="_blank" class="btn btn-outline">${tour.buttonText}</a>
+          </div>
+        `).join('');
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const navToggle = document.getElementById('navToggle');
-            const navMenu = document.getElementById('navMenu');
-            const navButtons = document.querySelectorAll('.nav-btn');
-            const currentTitleEl = document.getElementById('currentSectionTitle');
+        // Footer
+        document.getElementById('footerName').textContent = siteContent.footer.name;
+        document.getElementById('footerBio').innerHTML = siteContent.footer.bio.map(b => `<p>${b}</p>`).join('');
+        document.getElementById('footerContactsTitle').textContent = siteContent.footer.contactsTitle;
+        document.getElementById('footerPhone').textContent = `Телефон: ${siteContent.footer.phone}`;
+        document.getElementById('footerEmail').textContent = `Email: ${siteContent.footer.email}`;
+        document.getElementById('footerTaplink').href = siteContent.footer.taplinkUrl;
+        document.getElementById('footerLocationsTitle').textContent = siteContent.footer.locationsTitle;
+        document.getElementById('footerLocations').innerHTML = siteContent.footer.locations.map(loc => `<p>${loc}</p>`).join('');
+        document.getElementById('footerCopyright').textContent = siteContent.footer.copyright;
+      })
+      .catch(error => console.error('Ошибка при загрузке контента:', error));
 
-            // Названия секций для мобильной шапки
-            const sectionTitles = {
-                'yoga': 'Йога',
-                'bodywork': 'Телесная терапия',
-                'dobayukivanie': 'Добаюкивание',
-                'tours': 'Туры и поездки'
-            };
+    // --- ЛОГИКА МОБИЛЬНОЙ НАВИГАЦИИ С ВЫПАДАЮЩИМ НАЗВАНИЕМ ---
+    const navToggle = document.getElementById('navToggle');
+    const navMenu = document.getElementById('navMenu');
+    const navButtons = document.querySelectorAll('.nav-btn');
+    const currentTitleEl = document.getElementById('currentSectionTitle');
 
-            // --- МОБИЛЬНОЕ МЕНЮ (Открыть / Закрыть) ---
-            const toggleMenu = () => {
-                navToggle.classList.toggle('active');
-                navMenu.classList.toggle('active');
-            };
+    const sectionTitles = {
+      'yoga': 'Йога',
+      'bodywork': 'Телесная терапия',
+      'dobayukivanie': 'Добаюкивание',
+      'tours': 'Туры и поездки'
+    };
 
-            if (navToggle) {
-                navToggle.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    toggleMenu();
-                });
-            }
+    const toggleMenu = () => {
+      navToggle.classList.toggle('active');
+      navMenu.classList.toggle('active');
+    };
 
-            navButtons.forEach(link => {
-                link.addEventListener('click', () => {
-                    if (navMenu.classList.contains('active')) {
-                        toggleMenu();
-                    }
-                });
-            });
+    if (navToggle) navToggle.addEventListener('click', (e) => { e.stopPropagation(); toggleMenu(); });
+    navButtons.forEach(link => link.addEventListener('click', () => { if (navMenu.classList.contains('active')) toggleMenu(); }));
+    document.addEventListener('click', (e) => {
+      if (navMenu && !navMenu.contains(e.target) && !navToggle.contains(e.target) && navMenu.classList.contains('active')) {
+        toggleMenu();
+      }
+    });
 
-            document.addEventListener('click', (e) => {
-                if (navMenu && !navMenu.contains(e.target) && !navToggle.contains(e.target)) {
-                    if (navMenu.classList.contains('active')) {
-                        toggleMenu();
-                    }
-                }
-            });
+    const isMobile = () => window.innerWidth <= 768;
+    const observer = new IntersectionObserver((entries) => {
+      if (!isMobile()) return;
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.getAttribute('id');
+          if (sectionTitles[id] && currentTitleEl) {
+            currentTitleEl.textContent = sectionTitles[id];
+            currentTitleEl.classList.add('visible');
+          }
+        }
+      });
+    }, { rootMargin: '-20% 0px -60% 0px' });
 
-            // --- ОТСЛЕЖИВАНИЕ СЕКЦИИ ТОЛЬКО ДЛЯ МОБИЛЬНЫХ ---
-            const isMobile = () => window.innerWidth <= 768;
-            const sections = document.querySelectorAll('section[id]');
-
-            const observerOptions = {
-                root: null,
-                rootMargin: '-20% 0px -60% 0px',
-                threshold: 0
-            };
-
-            const observer = new IntersectionObserver((entries) => {
-                // Выполняем логику отслеживания только если ширина экрана мобильная
-                if (!isMobile()) return;
-
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const id = entry.target.getAttribute('id');
-
-                        if (sectionTitles[id] && currentTitleEl) {
-                            currentTitleEl.textContent = sectionTitles[id];
-                            currentTitleEl.classList.add('visible');
-                        }
-                    }
-                });
-            }, observerOptions);
-
-            sections.forEach(section => observer.observe(section));
-
-            // Скрытие названия в самом верху страницы на мобильных
-            window.addEventListener('scroll', () => {
-                if (isMobile() && window.scrollY < 300 && currentTitleEl) {
-                    currentTitleEl.classList.remove('visible');
-                }
-            });
-        });
-    </script>
-
+    document.querySelectorAll('section[id]').forEach(section => observer.observe(section));
+    window.addEventListener('scroll', () => {
+      if (isMobile() && window.scrollY < 300 && currentTitleEl) {
+        currentTitleEl.classList.remove('visible');
+      }
+    });
+  });
+</script>
 </body>
 
 </html>
